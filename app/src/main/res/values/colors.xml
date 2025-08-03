@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="background">#515151</color>
+    <color name="button_info_fon">#FFFFFF</color>
+    <color name="button_info_text">#000000</color>
+    <color name="main_fon">#FFFFFF</color>
+    <color name="main_text">#000000</color>
+    <color name="main_number_text">#000000</color>
+    <color name="skip_text">#002AFF</color>
+    <color name="bad_text">#FF0000</color>
+    <color name="good_text">#007C00</color>
+    <color name="forRework_text">#EA02FF</color>
+</resources>

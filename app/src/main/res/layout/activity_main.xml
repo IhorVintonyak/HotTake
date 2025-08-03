@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="@drawable/fon"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/skip"
+        android:textColor="@color/skip_text"
+        app:layout_constraintBottom_toTopOf="@+id/mainWindow"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/bad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="312dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/bad"
+        android:textColor="@color/bad_text"
+        app:layout_constraintEnd_toStartOf="@+id/mainWindow"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/good"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="320dp"
+        android:text="@string/good"
+        android:textColor="@color/good_text"
+        app:layout_constraintStart_toEndOf="@+id/mainWindow"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/forRework"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/forRework"
+        android:textColor="@color/forRework_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainWindow"
+        tools:ignore="MissingConstraints" />
+
+    <RelativeLayout
+        android:id="@+id/mainWindow"
+        android:layout_width="265dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="250dp"
+        android:background="@drawable/background_border"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints,TextSizeCheck">
+
+        <TextView
+            android:id="@+id/mainWindowText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="10dp"
+            android:autofillHints="Sorry"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:text="@string/main_text"
+            tools:ignore="LabelFor"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="282dp" />
+
+        <TextView
+            android:id="@+id/mainWindowNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_below="@id/mainWindowText"
+            android:layout_alignParentBottom="false"
+            android:layout_centerHorizontal="true"
+            android:text="@string/main_number"
+            android:textAlignment="center" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/infoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:backgroundTint="@color/background"
+        android:text="@string/button_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

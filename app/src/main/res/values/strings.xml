@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">HotTake</string>
+    <string name="button">BURN</string>
+    <string name="button_info">Info</string>
+    <string name="main_text">Lorem ipsum recaros  ipsum recaros  ipsum recaros  ipsum recaros  ipsum recaros  ipsum recaros  ipsum recarosipsum recaros  ipsum recaros  ipsum recaros  ipsum recaros  ipsum recaros  ipsum recaros</string>
+    <string name="main_number">#1</string>
+    <string name="skip">Salta</string>
+    <string name="bad">Brutta</string>
+    <string name="good">Buona</string>
+    <string name="forRework">Non è chiaro</string>
+
+</resources>
