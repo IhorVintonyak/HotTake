@@ -8,5 +8,6 @@
     <string name="bad">Brutta</string>
     <string name="good">Buona</string>
     <string name="forRework">Non è chiaro</string>
+    <string name="submit">Salva i dati</string>
 
 </resources>
