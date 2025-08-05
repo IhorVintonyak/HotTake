@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView forReworkNumber;
 
     public int iterator;
-    public int maxLength;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -56,11 +55,18 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Card prima = new Card(1, "Pizza non è buona", 5, 1, 4, 2);
-        Card seconda = new Card(2, "Pure fa schifo", 2, 4, 2, 6);
-        Card terza = new Card(3, "Non si può fire salve tra i amici", 0, 10, 1, 1);
+        Card prima = new Card(1, "1. La cultura del \"self-care\" è spesso solo consumismo travestito", 0, 0, 0, 1);
+        Card seconda = new Card(2, "Il bowling è meglio del calcio", 0, 0, 1, 0);
+        Card terza = new Card(3, "L'acqua ha un sapore diverso in ogni posto", 0, 0, 1, 1);
+        Card quarta = new Card(4, "Bisogna mettere prima i cereali, non il latte", 0, 1, 0, 0);
+        Card quinta = new Card(5, "Indossare i calzini con i sandali va benissimo", 0, 1, 0, 1);
+        Card sesta = new Card(6, "Gli atleti professionisti sono pessimi esempi", 0, 1, 1, 0);
+        Card settima = new Card(7, "Il privilegio della bellezza è reale", 0, 1, 1, 1);
+        Card ottava = new Card(8, "*Friends* non è stato uno show bello", 1, 0, 0, 0);
+        Card nona = new Card(9, "I musical sono belli", 1, 0, 0, 1);
+        Card decima = new Card(10, "L'arredamento minimalista fa sembrare le case dei modellini di IKEA", 1, 0, 1, 0);
 
-        Card[] cards = {prima, seconda, terza};
+        Card[] cards = {prima, seconda, terza, quarta, quinta, sesta, settima, ottava, nona, decima};
         iterator = 0;
         nextCard(cards, iterator);
 
@@ -69,41 +75,45 @@ public class MainActivity extends AppCompatActivity {
         mainWindowText.setOnTouchListener(new OnSwipeTouchListener(this) {
             @Override
             public void onSwipeRight() {
-                increaseOutputNumber(goodNumber);
-                iterator++;
-                visualizeCard(cards[iterator]);
+                if(nextCard(cards,iterator)){
+                    increaseOutputNumber(goodNumber);
+                    iterator++;
+                };
             }
 
             @Override
             public void onSwipeLeft() {
-                increaseOutputNumber(badNumber);
-                iterator++;
-                visualizeCard(cards[iterator]);
+                if(nextCard(cards,iterator)){
+                    increaseOutputNumber(badNumber);
+                    iterator++;
+                };
             }
 
             @Override
             public void onSwipeTop() {
-                increaseOutputNumber(skipNumber);
-                iterator++;
-                visualizeCard(cards[iterator]);
+                if(nextCard(cards,iterator)){
+                    increaseOutputNumber(skipNumber);
+                    iterator++;
+                };
             }
 
             @Override
             public void onSwipeBottom() {
-                increaseOutputNumber(forReworkNumber);
-                iterator++;
-                visualizeCard(cards[iterator]);
+                if(nextCard(cards,iterator)){
+                    increaseOutputNumber(forReworkNumber);
+                    iterator++;
+                };
             }
         });
-
-
     }
 
-    public void nextCard(Card[] cards, int iterator){
+    public boolean nextCard(Card[] cards, int iterator){
         if(cards.length <= iterator){
             Toast.makeText(this, "Non ci sono più carte", Toast.LENGTH_SHORT).show();
+            return false;
         }else{
             visualizeCard(cards[iterator]);
+            return true;
         }
     }
 
