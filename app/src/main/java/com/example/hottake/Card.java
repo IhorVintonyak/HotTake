@@ -109,4 +109,22 @@ public class Card {
     public void setNumberVoteForRework(int numberVoteForRework) {
         this.numberVoteForRework = numberVoteForRework;
     }
+
+    @Override
+    public String toString(){
+        return getNumber()+" "+getText()+" "+getNumberVoteBad()+" "+getNumberVoteGood()+" "+getNumberVoteSkip()+" "+getNumberVoteForRework();
+    }
+
+    public void incrementVoteBad(){
+        numberVoteBad++;
+    }
+    public void incrementVoteGood(){
+        numberVoteGood++;
+    }
+    public void incrementVoteSkip(){
+        numberVoteSkip++;
+    }
+    public void incrementVoteForRework(){
+        numberVoteForRework++;
+    }
 }
