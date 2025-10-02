@@ -8,7 +8,6 @@ public class Card {
     private int numberVoteSkip;
     private int numberVoteForRework;
 
-
     public Card(){
         number = 0;
         text = "";
