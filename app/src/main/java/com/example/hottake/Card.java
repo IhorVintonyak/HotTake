@@ -1,6 +1,11 @@
 package com.example.hottake;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "cards")
 public class Card {
+    @PrimaryKey()
     private int number;
     private String text;
     private int numberVoteBad;
@@ -47,9 +52,6 @@ public class Card {
     public void voteForRework() {
         numberVoteForRework++;
     }
-
-
-
 
     public String categorizeCard(){
         if(numberVoteBad > numberVoteGood && numberVoteBad > numberVoteSkip && numberVoteBad > numberVoteForRework){
@@ -111,7 +113,7 @@ public class Card {
 
     @Override
     public String toString(){
-        return getNumber()+" "+getText()+" "+getNumberVoteBad()+" "+getNumberVoteGood()+" "+getNumberVoteSkip()+" "+getNumberVoteForRework();
+        return "Card number: "+getNumber()+" With text: "+getText()+" Vote bad: "+getNumberVoteBad()+" Vote good:"+getNumberVoteGood()+" Vote skip:"+getNumberVoteSkip()+" Vote rework:"+getNumberVoteForRework();
     }
 
     public void incrementVoteBad(){
