@@ -39,10 +39,12 @@ public class Deck {
     @NonNull
     @Override
     public String toString() {
+        StringBuilder sb  = new StringBuilder();
         for (Card card : cards) {
-            System.out.println(card);
+            sb.append(card.toString() + "\n");
         }
-        return super.toString();
+        String result = sb.toString();
+        return result;
     }
 
 }
