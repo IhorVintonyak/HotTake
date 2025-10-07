@@ -3,6 +3,7 @@ package com.example.hottake;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private AppDatabase db;
@@ -47,35 +49,16 @@ public class MainActivity extends AppCompatActivity {
     Card tenth = new Card( 10, "L'arredamento minimalista fa sembrare le case dei modellini di IKEA", 1, 0, 1, 0 );
 
     Card[] cards = {first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth};
+
     Deck deck = new Deck( cards );
+
 
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_main );
-
-        //Create database
-        db = Room.databaseBuilder(getApplicationContext(),
-                        AppDatabase.class, "cards_database")
-                .allowMainThreadQueries() // Only for test
-                .build();
-
-        cardDao = db.cardDao();
-
-
-        //Card card1 = new Card();
-        //cardDao.insert(third);
-
-        //Add element to database
-        //ERROR with empty object. With any of deck cards works.
-        try {
-            Card card1 = new Card();
-            cardDao.insert(third);
-        } catch (Exception e) {
-            Toast.makeText(this, "ERROR: maybe empty object", Toast.LENGTH_LONG).show();
-        }
+        setContentView(R.layout.activity_main);
 
         //Link fields with variables
         mainWindowText = findViewById( R.id.mainWindowText );
@@ -86,8 +69,21 @@ public class MainActivity extends AppCompatActivity {
         skipNumber = findViewById( R.id.skipNumber );
         forReworkNumber = findViewById( R.id.forReworkNumber );
 
-        runCard( deck.getCurrentCard() );
+        //createDatabase(cards);
+        db = Room.databaseBuilder(getApplicationContext(),
+                        AppDatabase.class, "cards_database")
+                .allowMainThreadQueries()
+                .build();
+        cardDao = db.cardDao();
 
+
+        //Get Data from Database
+        //  If database is empty, populate database
+
+
+
+        //Transform data from database in deck
+        runCard( deck.getCurrentCard() );
 
         // Swipe actions
         mainWindowText.setOnTouchListener( new OnSwipeTouchListener( this ) {
@@ -166,6 +162,32 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton("OK", null);
         builder.show();
     }
+    public void createDatabase(Card[] inputCards){
+
+
+         for (Card element:inputCards) {
+            cardDao.insert(element);
+         }
+    }
+
+    public List<Card> read(){
+        List<Card> allCards = cardDao.getAllCards();
+        for (Card c : allCards) {
+            Log.d("RoomExample", "Card: " +c.toString());
+        }
+        return allCards;
+    }
+
+    public void deleteDb(){
+        for (Card element:cardDao.getAllCards()) {
+           cardDao.delete(element);
+        }
+    }
 }
 
 //forReworkNumber.setText(String.valueOf(Integer.parseInt(forReworkNumber.getText().toString())+1));
+//Toast.makeText(this, "getAllCardsWorks", Toast.LENGTH_LONG).show();
+//deleteDb();
+//createDatabase(cards);
+//read();
+//cardDao.insert(seventh);
