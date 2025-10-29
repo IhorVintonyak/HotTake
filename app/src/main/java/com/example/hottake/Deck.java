@@ -11,6 +11,11 @@ public class Deck {
         cards = inputCards;
         iterator = 0;
     }
+
+    public Card[] getCards() {
+        return cards;
+    }
+
     public boolean incrementIsPossible(){
         if(iterator >= cards.length-1){
             return false;

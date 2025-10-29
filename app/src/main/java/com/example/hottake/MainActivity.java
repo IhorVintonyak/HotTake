@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     Card tenth = new Card( 10, "L'arredamento minimalista fa sembrare le case dei modellini di IKEA", 1, 0, 1, 0 );
 
     Card[] cards = {first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth};
-
     Deck deck = new Deck( cards );
 
 
@@ -80,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         //Get Data from Database
         //  If database is empty, populate database
 
-
+        read();
 
         //Transform data from database in deck
         runCard( deck.getCurrentCard() );
@@ -143,12 +142,32 @@ public class MainActivity extends AppCompatActivity {
         forReworkNumber.setText( String.valueOf( card.getNumberVoteForRework() ) );
     }
 
-    public void saveData(View v) {
-        Toast.makeText(this, deck.toString(), Toast.LENGTH_LONG).show();
+//    public void saveData(View v) {
+//        Toast.makeText(this, deck.toString(), Toast.LENGTH_LONG).show();
+//    }
 
+    public void createDatabase(Card[] inputCards){
+        // create database from array of cards
+        for (Card element:inputCards) {
+            cardDao.insert(element);
+        }
+    }
+
+    public void deleteDb(){
+        // delete all database
+        for (Card element:cardDao.getAllCards()) {
+            cardDao.delete(element);
+        }
+    }
+
+
+    public void saveData(View v){
+        printData(v);
+        modifyDataInDatabase(v);
     }
 
     public void printData(View v) {
+        //Print data from button Salva i dati
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Deck Data");
 
@@ -162,27 +181,26 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton("OK", null);
         builder.show();
     }
-    public void createDatabase(Card[] inputCards){
-
-
-         for (Card element:inputCards) {
-            cardDao.insert(element);
-         }
-    }
 
     public List<Card> read(){
+        // read of all cards in Log.d
         List<Card> allCards = cardDao.getAllCards();
         for (Card c : allCards) {
+            cardDao.update(c);
             Log.d("RoomExample", "Card: " +c.toString());
         }
         return allCards;
     }
 
-    public void deleteDb(){
-        for (Card element:cardDao.getAllCards()) {
-           cardDao.delete(element);
+    public  void modifyDataInDatabase(View v){
+        // modify data in database
+        for(Card element:deck.getCards()){
+            cardDao.update(element);
         }
+        //WHY WORK?
+        read();
     }
+
 }
 
 //forReworkNumber.setText(String.valueOf(Integer.parseInt(forReworkNumber.getText().toString())+1));
